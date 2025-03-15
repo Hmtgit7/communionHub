@@ -1,11 +1,66 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import HeroSection from '../components/HeroSection';
-import FeatureCard from '../components/FeatureCard';
 import TestimonialCard from '../components/TestimonialCard';
 import { FiUsers, FiStar, FiGlobe, FiTrendingUp } from 'react-icons/fi';
 
 const Home = () => {
+    const [testimonialIndex, setTestimonialIndex] = useState(0);
+
+    // Testimonial data
+    const testimonials = [
+        {
+            name: "John M.",
+            location: "USA",
+            testimonial: "Communion has transformed how I connect with my community, fostering unity and understanding among diverse faith traditions.",
+            imageSrc: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+        },
+        {
+            name: "Rohan K.",
+            location: "India",
+            testimonial: "Being part of Communion is life-changing, blending innovation with spirituality to create a truly inclusive space. The events and discussions are eye-opening.",
+            imageSrc: "https://images.unsplash.com/photo-1618077360395-f3068be8e001?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80"
+        },
+        {
+            name: "Amira L.",
+            location: "UAE",
+            testimonial: "Through Communion, I've joined events and discussions that broadened my perspective and connected me globally. The platform is intuitive and engaging.",
+            imageSrc: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80"
+        },
+        {
+            name: "Michael P.",
+            location: "Canada",
+            testimonial: "The events organized through Communion have helped me connect with people I would have never met otherwise. It's expanding my worldview in meaningful ways.",
+            imageSrc: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+        },
+        {
+            name: "Sarah J.",
+            location: "Australia",
+            testimonial: "As someone new to my community, Communion has been the perfect platform to connect with like-minded individuals and learn about different faith practices.",
+            imageSrc: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+        },
+        {
+            name: "John M.",
+            location: "USA",
+            testimonial: "Communion has transformed how I connect with my community, fostering unity and understanding among diverse faith traditions.",
+            imageSrc: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+        }
+    ];
+
+    // Helper functions for navigation
+    const nextTestimonial = () => {
+        setTestimonialIndex((prevIndex) =>
+            prevIndex + 3 >= testimonials.length ? 0 : prevIndex + 3
+        );
+    };
+
+    const prevTestimonial = () => {
+        setTestimonialIndex((prevIndex) =>
+            prevIndex === 0 ? Math.max(0, testimonials.length - 3) : prevIndex - 3
+        );
+    };
+
     return (
         <div className="fade-in">
             <HeroSection />
@@ -42,7 +97,7 @@ const Home = () => {
                                 Communion bridges diverse religious communities, becoming the social glue that brings people together across traditional boundaries.
                             </p>
                             <div className="mt-4">
-                                <Link to="#" className="inline-flex items-center text-primary-light font-medium hover:underline">
+                                <Link to="/events" className="inline-flex items-center text-primary-light font-medium hover:underline">
                                     Learn More
                                     <svg className="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none">
                                         <path d="M9 5L16 12L9 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -66,7 +121,7 @@ const Home = () => {
                                 Experience faith in a fresh way through our interactive features, engaging events, and modern approach to spirituality and community building.
                             </p>
                             <div className="mt-4">
-                                <Link to="#" className="inline-flex items-center text-primary-light font-medium hover:underline">
+                                <Link to="/events" className="inline-flex items-center text-primary-light font-medium hover:underline">
                                     Learn More
                                     <svg className="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none">
                                         <path d="M9 5L16 12L9 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -90,7 +145,7 @@ const Home = () => {
                                 We foster understanding and harmony between different faith communities through intentional programming and inclusive design.
                             </p>
                             <div className="mt-4">
-                                <Link to="#" className="inline-flex items-center text-primary-light font-medium hover:underline">
+                                <Link to="/events" className="inline-flex items-center text-primary-light font-medium hover:underline">
                                     Learn More
                                     <svg className="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none">
                                         <path d="M9 5L16 12L9 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -307,39 +362,32 @@ const Home = () => {
                     </motion.div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <TestimonialCard
-                            name="John M."
-                            location="USA"
-                            testimonial="Communion has transformed how I connect with my community, fostering unity and understanding among diverse faith traditions."
-                            imageSrc="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
-                            delay={0}
-                        />
-
-                        <TestimonialCard
-                            name="Rohan K."
-                            location="India"
-                            testimonial="Being part of Communion is life-changing, blending innovation with spirituality to create a truly inclusive space. The events and discussions are eye-opening."
-                            imageSrc="https://images.unsplash.com/photo-1618077360395-f3068be8e001?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80"
-                            delay={0.1}
-                        />
-
-                        <TestimonialCard
-                            name="Amira L."
-                            location="UAE"
-                            testimonial="Through Communion, I've joined events and discussions that broadened my perspective and connected me globally. The platform is intuitive and engaging."
-                            imageSrc="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80"
-                            delay={0.2}
-                        />
+                        {testimonials.slice(testimonialIndex, testimonialIndex + 3).map((testimonial, index) => (
+                            <TestimonialCard
+                                key={testimonial.name}
+                                name={testimonial.name}
+                                location={testimonial.location}
+                                testimonial={testimonial.testimonial}
+                                imageSrc={testimonial.imageSrc}
+                                delay={index * 0.1}
+                            />
+                        ))}
                     </div>
 
                     <div className="flex justify-center mt-10">
                         <div className="flex space-x-2">
-                            <button className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+                            <button
+                                onClick={prevTestimonial}
+                                className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-primary-dark transition-colors"
+                            >
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
                                 </svg>
                             </button>
-                            <button className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+                            <button
+                                onClick={nextTestimonial}
+                                className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-primary-dark transition-colors"
+                            >
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
                                 </svg>
@@ -457,7 +505,7 @@ const Home = () => {
                             viewport={{ once: true }}
                             className="mt-10 text-center"
                         >
-                            <Link to="#" className="inline-block text-primary font-medium">
+                            <Link to="/events" className="inline-block text-primary font-medium">
                                 View All
                                 <svg className="w-4 h-4 ml-1 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
