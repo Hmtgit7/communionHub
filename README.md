@@ -40,3 +40,67 @@ This project is a simplified version of the Communion app, designed to connect d
 ### Installation
 
 1. Clone the repository:
+   ```sh
+   git clone https://github.com/Hmtgit7/communionHub.git
+   cd communionHub
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Start the development server:
+   ```sh
+   npm start
+   ```
+4. Open your browser and navigate to:
+   ```
+   http://localhost:3000
+   ```
+
+## Deployment
+
+This project can be deployed to Vercel or Netlify by connecting your repository to their platforms.
+
+### Deploying to Vercel
+
+1. Push your code to GitHub
+2. Import your project on Vercel
+3. Deploy
+
+### Deploying to Netlify
+
+1. Push your code to GitHub
+2. Import your project on Netlify
+3. Configure build settings:
+   - Build command: `npm run build`
+   - Publish directory: `dist`
+4. Deploy
+
+## Project Structure
+
+```
+communion-app/
+├── public/
+│   └── favicon.ico
+├── src/
+│   ├── assets/
+│   │   └── logo.svg
+│   ├── components/
+│   │   ├── Header.jsx
+│   │   ├── Footer.jsx
+│   │   ├── HeroSection.jsx
+│   │   ├── FeatureCard.jsx
+│   │   ├── TestimonialCard.jsx
+│   │   ├── EventCard.jsx
+│   │   ├── EventForm.jsx
+│   │   └── EventFilter.jsx
+│   ├── pages/
+│   │   ├── Home.jsx
+│   │   └── Events.jsx
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+├── vite.config.js
+├── package.json
+├── tailwind.config.js
+└── README.md
